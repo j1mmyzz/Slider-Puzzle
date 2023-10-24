@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         elements[i].style.height = (width-40)/4 - 14 + 'px';
         elements[i].style.width = (width-40)/4 - 14 + 'px';
     }
+    startGame();
 });
 
 window.addEventListener('resize', function(event) {
@@ -19,11 +20,8 @@ window.addEventListener('resize', function(event) {
 }, true);
 
 let ids = ["btn1", "btn2", "btn3", "btn4", "btn5", "btn6", "btn7", "btn8", "btn9", "btn10", "btn11", "btn12", "btn13", "btn14", "btn15", "btn16"];
-let cnt = 0;
 
 function startGame(){
-    cnt = 0;
-    document.getElementById("cnt").innerText = cnt;
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     numbers = shuffle(numbers);
     if (!isSolvable(numbers)){
@@ -59,7 +57,6 @@ function startGame(){
                 numbers = swap(numbers, i, (m+1)*4+n);
             }
             
-            document.getElementById("cnt").innerText = cnt;
             let k=1;
             for (let i=0; i<16; i++){
                 if (numbers[i] != k) break;
@@ -100,7 +97,6 @@ function showMain(){
 function showCongrats(){
     main = document.getElementById('main').innerHTML;
     document.getElementById('main').innerHTML = congrats;
-    document.getElementById('result').innerText = cnt;
 }
 
 
@@ -125,7 +121,6 @@ function isSolvable(numbers){
 }
 
 function swap(numbers, i, j){
-    cnt++;
     numbers[j] = numbers[i];
     document.getElementById(ids[j]).innerText = numbers[i];
     numbers[i] = 16; 
